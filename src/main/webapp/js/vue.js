@@ -353,7 +353,7 @@
     }
   }
 
-  var SSR_ATTR = 'data-server-rendered';
+  var SSR_ATTR = 'data-service-rendered';
 
   var ASSET_TYPES = [
     'component',
@@ -558,15 +558,15 @@
   }
 
   // this needs to be lazy-evaled because vue may be required before
-  // vue-server-renderer can set VUE_ENV
+  // vue-service-renderer can set VUE_ENV
   var _isServer;
   var isServerRendering = function () {
     if (_isServer === undefined) {
       /* istanbul ignore if */
       if (!inBrowser && !inWeex && typeof global !== 'undefined') {
-        // detect presence of vue-server-renderer and avoid
+        // detect presence of vue-service-renderer and avoid
         // Webpack shimming the process
-        _isServer = global['process'] && global['process'].env.VUE_ENV === 'server';
+        _isServer = global['process'] && global['process'].env.VUE_ENV === 'service';
       } else {
         _isServer = false;
       }
@@ -3208,7 +3208,7 @@
       if (Ctor === undefined) {
         // return a placeholder node for async component, which is rendered
         // as a comment node but preserves all the raw information for the node.
-        // the information will be used for async server-rendering and hydration.
+        // the information will be used for async service-rendering and hydration.
         return createAsyncPlaceholder(
           asyncFactory,
           data,
@@ -6386,7 +6386,7 @@
                 ) {
                   hydrationBailed = true;
                   console.warn('Parent: ', elm);
-                  console.warn('server innerHTML: ', i);
+                  console.warn('service innerHTML: ', i);
                   console.warn('client innerHTML: ', elm.innerHTML);
                 }
                 return false
@@ -6470,7 +6470,7 @@
         } else {
           if (isRealElement) {
             // mounting to a real element
-            // check if this is server-rendered content and if we can perform
+            // check if this is service-rendered content and if we can perform
             // a successful hydration.
             if (oldVnode.nodeType === 1 && oldVnode.hasAttribute(SSR_ATTR)) {
               oldVnode.removeAttribute(SSR_ATTR);
@@ -6483,14 +6483,14 @@
               } else {
                 warn(
                   'The client-side rendered virtual DOM tree is not matching ' +
-                  'server-rendered content. This is likely caused by incorrect ' +
+                  'service-rendered content. This is likely caused by incorrect ' +
                   'HTML markup, for example nesting block-level elements inside ' +
                   '<p>, or missing <tbody>. Bailing hydration and performing ' +
                   'full client-side render.'
                 );
               }
             }
-            // either not server-rendered, or hydration failed.
+            // either not service-rendered, or hydration failed.
             // create an empty node and replace it
             oldVnode = emptyNodeAt(oldVnode);
           }
