@@ -3,13 +3,30 @@
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-    <script src="js/vue.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </head>
+<script>
+    function checkLogin() {
+        $.ajax({
+            url:"/rest/login",
+            type:"POST",
+            data:{
+                "username":username,
+                "password":password
+            },
+            dataType:'json'
+        })
+    }
+
+</script>
 <body>
     <form id="loginFrom">
         <div>
             <span><label>用户:</label></span>
-            <span><input type="text"></span>
+            <span><input type="text" name="uername" id="username"></span><br><br>
+            <span><label>密码</label></span>
+            <span><input type="password" name="password" id="password"/></span><br><br>
+            <span><button type="submit" onclick="checkLogin()">登录</button></span>
         </div>
     </form>
 </body>
