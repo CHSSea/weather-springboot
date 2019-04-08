@@ -1,8 +1,5 @@
 package com.example.springboot.bean;
 
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
-
 import java.io.Serializable;
 
 /**
