@@ -25,6 +25,7 @@ public class RedisTestController {
     public String set(){
         String username = "mumu";
         String password = "111";
+        String a="haisheng";//git测试
         boolean result = redisUtil.set(username,password);
         if(result){
             return "SUCCESS";
