@@ -4,3 +4,5 @@
 frist commit
 是个springboot的简单框架，后期添加功能
 2019-04-04：添加Redis的配置
+
+2019-04-25: 添加RabbitMQ的配置（类型：topic）
