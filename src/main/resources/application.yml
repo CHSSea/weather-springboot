@@ -12,15 +12,22 @@ spring:
     port: 6379
 #MySQL config
   datasource:
-    url: jdbc:mysql://localhost:3306/user
+    url: jdbc:mysql://localhost:3306/jasper_test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
+  #RabbitMQ config
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
+
+#mapper4.0 config
+mapper:
+  identity: MYSQL
+  not-empty: false
+  mappers: com.example.springboot.mapperbase.BaseMapper
 
 
 
