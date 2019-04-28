@@ -68,4 +68,5 @@ public class User implements Serializable {
     public String testCode(){
         return "Test code conflict";
     }
+    public int gkqmethod(){return 1;}
 }
