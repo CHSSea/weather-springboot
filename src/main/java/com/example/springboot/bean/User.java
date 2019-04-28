@@ -65,7 +65,7 @@ public class User implements Serializable {
                 '}';
     }
 
-    public String test(){
+    public String testCode(){
         return "Test code conflict";
     }
 }
