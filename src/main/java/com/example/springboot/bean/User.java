@@ -70,4 +70,5 @@ public class User implements Serializable {
     }
     public int gkqmethod(){return 1;}
     public void haiSheng(){};
+    public String  gkqmethod2(){return "gkq";}
 }
