@@ -69,4 +69,5 @@ public class User implements Serializable {
         return "Test code conflict";
     }
     public int gkqmethod(){return 1;}
+    public void haiSheng(){};
 }
