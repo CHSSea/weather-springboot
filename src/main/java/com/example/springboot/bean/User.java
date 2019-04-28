@@ -64,4 +64,8 @@ public class User implements Serializable {
                 ", redisKey='" + redisKey + '\'' +
                 '}';
     }
+
+    public String test(){
+        return "Test code conflict";
+    }
 }
