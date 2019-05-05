@@ -23,7 +23,8 @@ public class ApplicationStartQuartzJobListener implements ApplicationListener<Co
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
-            quartzService.createSchedulerJob("Weather","/5 * * * * ?", WeatherJob.class);
+            //0 0 8 * * ? 代表每天的早上8点执行
+            quartzService.createSchedulerJob("Weather","0 0 8 * * ?", WeatherJob.class);
             System.out.println("job start");
         } catch (SchedulerException e) {
             e.printStackTrace();

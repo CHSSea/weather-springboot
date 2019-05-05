@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,8 +18,13 @@ import java.util.List;
  * @author: Haisheng
  * @create: 2019-04-29 14:19
  **/
-public class JsoupWeather {
-    public static void main(String[] args) throws IOException {
+@Service
+public class JsoupWeatherService {
+    /**
+     * 爬取中国天气网的上海的天气
+     * @throws IOException
+     */
+    public List<Weather> getWeather() throws IOException {
         //通过URL获取HTML内容
         Document doc =  Jsoup.connect("http://www.weather.com.cn/weather/101020100.shtml").timeout(10000).get();
         String title = doc.getElementsByTag("title").text();
@@ -33,7 +39,6 @@ public class JsoupWeather {
         JSONObject jsonObject = JSONObject.fromObject(weather);
         JSONArray jsonArray = (JSONArray) jsonObject.get("1d");
         List<Weather> list = new ArrayList<Weather>();
-        System.out.println(jsonArray.get(0));
         for(int i = 0; i < jsonArray.size();i++){
             String[] strArray = ((String) jsonArray.get(i)).split(",");
             Weather weather1 = new Weather();
@@ -47,5 +52,6 @@ public class JsoupWeather {
             weather1.setCity(city);
             list.add(weather1);
         }
+        return list;
     }
 }
