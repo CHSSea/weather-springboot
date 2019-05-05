@@ -29,8 +29,8 @@ public class Weather {
     private String wind;
     @Column(name = "windSize")
     private String windSize;
-    @Column(name = "unkonow")
-    private String unkonow;
+    @Column(name = "unknow")
+    private String unknow;
 
     public String getId() {
         return id;
@@ -96,12 +96,12 @@ public class Weather {
         this.windSize = windSize;
     }
 
-    public String getUnkonow() {
-        return unkonow;
+    public String getUnknow() {
+        return unknow;
     }
 
-    public void setUnkonow(String unkonow) {
-        this.unkonow = unkonow;
+    public void setUnkonow(String unknow) {
+        this.unknow = unknow;
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Weather {
                 ", temperature='" + temperature + '\'' +
                 ", wind='" + wind + '\'' +
                 ", windSize='" + windSize + '\'' +
-                ", unkonow='" + unkonow + '\'' +
+                ", unkonow='" + unknow + '\'' +
                 '}';
     }
 }
