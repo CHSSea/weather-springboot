@@ -64,11 +64,4 @@ public class User implements Serializable {
                 ", redisKey='" + redisKey + '\'' +
                 '}';
     }
-
-    public String testCode(){
-        return "Test code conflict";
-    }
-    public int gkqmethod(){return 1;}
-    public void haiSheng(){};
-    public String  gkqmethod2(){return "gkq";}
 }
