@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Insert;
  **/
 public interface WeatherMapper extends BaseMapper<Weather> {
 
-    @Insert("insert into weather (city,time,dn,detail,temperature,wind,windSize,unknow) values " +
-            "(#{city},#{time},#{dn},#{detail},#{temperature},#{wind},#{windSize},#{unknow})")
+    @Insert("insert into weather (city,time,dn,detail,temperature,wind,windSize,unknow,createTime) values " +
+            "(#{city},#{time},#{dn},#{detail},#{temperature},#{wind},#{windSize},#{unknow},#{createTime})")
     void save(Weather weather);
 }

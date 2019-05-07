@@ -6,6 +6,8 @@ import com.example.springboot.mapper.WeatherMapper;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -19,6 +21,7 @@ import java.util.List;
  **/
 public class WeatherJob implements Job {
 
+    private static final Logger logger = LoggerFactory.getLogger(Weather.class);
     @Autowired
     private JsoupWeatherService jsoupWeatherService;
     @Autowired
@@ -26,16 +29,18 @@ public class WeatherJob implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        logger.info("Start Job");
         List<Weather> list = null;
         try {
             list = jsoupWeatherService.getWeather();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Get weather error.",e);
         }
         if(list != null && list.size() > 0){
             for (Weather weather : list) {
                 weatherMapper.save(weather);
             }
         }
+        logger.info("End Job");
     }
 }

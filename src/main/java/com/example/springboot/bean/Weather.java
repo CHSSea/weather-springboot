@@ -3,6 +3,7 @@ package com.example.springboot.bean;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * @program: springboot
@@ -31,6 +32,36 @@ public class Weather {
     private String windSize;
     @Column(name = "unknow")
     private String unknow;
+    @Column(name = "createTime")
+    private Date createTime;
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "id='" + id + '\'' +
+                ", city='" + city + '\'' +
+                ", time='" + time + '\'' +
+                ", dn='" + dn + '\'' +
+                ", detail='" + detail + '\'' +
+                ", temperature='" + temperature + '\'' +
+                ", wind='" + wind + '\'' +
+                ", windSize='" + windSize + '\'' +
+                ", unknow='" + unknow + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
+
+    public void setUnknow(String unknow) {
+        this.unknow = unknow;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public String getId() {
         return id;
@@ -104,16 +135,4 @@ public class Weather {
         this.unknow = unknow;
     }
 
-    @Override
-    public String toString() {
-        return "Weather{" +
-                "time='" + time + '\'' +
-                ", dn='" + dn + '\'' +
-                ", detail='" + detail + '\'' +
-                ", temperature='" + temperature + '\'' +
-                ", wind='" + wind + '\'' +
-                ", windSize='" + windSize + '\'' +
-                ", unkonow='" + unknow + '\'' +
-                '}';
-    }
 }
