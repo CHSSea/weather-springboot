@@ -9,6 +9,7 @@ CREATE TABLE `weather` (
   `wind` varchar(255) DEFAULT NULL,
   `windSize` varchar(255) DEFAULT NULL,
   `unknow` varchar(255) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 

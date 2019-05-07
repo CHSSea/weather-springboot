@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ import java.util.List;
 public class JsoupWeatherService {
     /**
      * 爬取中国天气网的上海的天气
+     * @return List
      * @throws IOException
      */
     public List<Weather> getWeather() throws IOException {
@@ -50,6 +52,7 @@ public class JsoupWeatherService {
             weather1.setWindSize(strArray[5]);
             weather1.setUnkonow(strArray[6]);
             weather1.setCity(city);
+            weather1.setCreateTime(new Date());
             list.add(weather1);
         }
         return list;

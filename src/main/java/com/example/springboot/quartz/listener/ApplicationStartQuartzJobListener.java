@@ -3,6 +3,8 @@ package com.example.springboot.quartz.listener;
 import com.example.springboot.quartz.service.QuartzService;
 import com.example.springboot.quartz.task.WeatherJob;
 import org.quartz.SchedulerException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 @Configuration
 public class ApplicationStartQuartzJobListener implements ApplicationListener<ContextRefreshedEvent> {
 
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationStartQuartzJobListener.class);
     @Autowired
     private QuartzService quartzService;
 
@@ -24,10 +27,9 @@ public class ApplicationStartQuartzJobListener implements ApplicationListener<Co
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
             //0 0 8 * * ? 代表每天的早上8点执行
-            quartzService.createSchedulerJob("Weather","0 0 8 * * ?", WeatherJob.class);
-            System.out.println("job start");
+            quartzService.createSchedulerJob("Weather","0 0/2 * * * ?", WeatherJob.class);
         } catch (SchedulerException e) {
-            e.printStackTrace();
+            logger.error("Execute Job error",e);
         }
     }
 }
