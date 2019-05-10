@@ -27,7 +27,8 @@ public class ApplicationStartQuartzJobListener implements ApplicationListener<Co
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
             //0 0 8 * * ? 代表每天的早上8点执行
-            quartzService.createSchedulerJob("Weather","0 0/2 * * * ?", WeatherJob.class);
+            //0 0/2 * * * ? 代表每2分钟执行
+            quartzService.createSchedulerJob("Weather","0 0 8 * * ?", WeatherJob.class);
         } catch (SchedulerException e) {
             logger.error("Execute Job error",e);
         }
