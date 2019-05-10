@@ -22,6 +22,15 @@ spring:
     port: 5672
     username: guest
     password: guest
+    publisher-confirms: true #消息发送到交换机确认机制，是否确认回调
+    publisher-returns: true  #消息发送到交换机确认机制，是否返回回调
+    listener:
+      simple:
+        acknowledge-mode: manual #手动模式
+        concurrency: 1 #最小消费者数量
+        max-concurrency: 2 #最大消费者数量
+        retry:
+          enabled: true #是否支持重试
 
 #mapper4.0 config
 mapper:
@@ -29,6 +38,9 @@ mapper:
   not-empty: false
   mappers: com.example.springboot.mapperbase.BaseMapper
 
+#阿里短信验证
+accessKeyId: LTAIwZYWq65HFXS9
+accessSecret: tPvoHA2p0KRnffkgSmBJhANSyJedv7
 
 
 

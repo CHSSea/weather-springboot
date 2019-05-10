@@ -27,7 +27,7 @@ public class RabbitTopicTest {
     }
 
     @Test
-    public void  send2(){
+    public void send2(){
         produce.send2();
     }
 }
