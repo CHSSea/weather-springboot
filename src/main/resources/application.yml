@@ -39,8 +39,8 @@ mapper:
   mappers: com.example.springboot.mapperbase.BaseMapper
 
 #阿里短信验证
-accessKeyId: LTAIwZYWq65HFXS9
-accessSecret: tPvoHA2p0KRnffkgSmBJhANSyJedv7
+accessKeyId: 
+accessSecret: 
 
 
 
