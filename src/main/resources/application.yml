@@ -2,6 +2,8 @@
 #Tomcat config
 server:
   port: 8080
+  tomcat:
+    max-http-post-size: 8192
 
 #Redis config
 spring:
@@ -12,7 +14,7 @@ spring:
     port: 6379
 #MySQL config
   datasource:
-    url: jdbc:mysql://localhost:3306/jasper_test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://106.15.251.138:3306/weatherproject?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver

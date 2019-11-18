@@ -26,11 +26,14 @@ public class JsoupWeatherService {
      * @return List
      * @throws IOException
      */
-    public List<Weather> getWeather() throws IOException {
+    public List<Weather> getWeather() throws IOException{
         //通过URL获取HTML内容
-        Document doc =  Jsoup.connect("http://www.weather.com.cn/weather/101020100.shtml").timeout(10000).get();
+        Document doc = null;
+        doc = Jsoup.connect("http://www.weather.com.cn/weather/101020100.shtml").timeout(10000).get();
+        //获取title的值
         String title = doc.getElementsByTag("title").text();
-        String city = title.substring(0,3).replace("【","");
+        //String city = title.substring(0,3).replace("【","");
+        String city = title.substring(0,2);
         //获取div的class="c7d"的值
         Element element = doc.select("div.c7d").first();
         //获取第一个<script>标签
