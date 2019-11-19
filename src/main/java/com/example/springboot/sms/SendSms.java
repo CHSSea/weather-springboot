@@ -74,7 +74,7 @@ public class SendSms {
      * @param templateCode 短信模板
      * @param josnObject   短信内容
      */
-    public void sendSMS(String phoneNumber,String accessKeyId,String accessSecret,String signName,String templateCode,
+    public static void sendSMS(String phoneNumber,String accessKeyId,String accessSecret,String signName,String templateCode,
                         String josnObject) {
         DefaultProfile profile = DefaultProfile.getProfile("default",accessKeyId,accessSecret);
         IAcsClient client = new DefaultAcsClient(profile);
