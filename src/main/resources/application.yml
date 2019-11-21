@@ -20,7 +20,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   #RabbitMQ config
   rabbitmq:
-    host: localhost
+    host: 106.15.251.138
     port: 5672
     username: guest
     password: guest
