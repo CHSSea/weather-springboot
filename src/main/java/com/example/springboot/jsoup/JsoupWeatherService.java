@@ -22,41 +22,57 @@ import java.util.List;
 @Service
 public class JsoupWeatherService {
     /**
-     * 爬取中国天气网的上海的天气
+     * 爬取中国天气网的上海和南京的天气
      * @return List
      * @throws IOException
      */
     public List<Weather> getWeather() throws IOException{
-        //通过URL获取HTML内容
+        //1.上海 2.南京
+        String[] cityList = {"101020100","101190101"};
+        String url;
+        int length = cityList.length;
         Document doc = null;
-        doc = Jsoup.connect("http://www.weather.com.cn/weather/101020100.shtml").timeout(10000).get();
-        //获取title的值
-        String title = doc.getElementsByTag("title").text();
-        //String city = title.substring(0,3).replace("【","");
-        String city = title.substring(0,2);
-        //获取div的class="c7d"的值
-        Element element = doc.select("div.c7d").first();
-        //获取第一个<script>标签
-        Element script = element.select("script").first();
-        //获取<script>中的内容
-        String[] str = script.data().split("=");
-        String weather = str[1];
-        JSONObject jsonObject = JSONObject.fromObject(weather);
-        JSONArray jsonArray = (JSONArray) jsonObject.get("1d");
+        String title;
+        String city;
+        Element element;
+        Element script;
+        String[] str;
+        String weather;
+        JSONObject jsonObject;
+        JSONArray jsonArray;
         List<Weather> list = new ArrayList<Weather>();
-        for(int i = 0; i < jsonArray.size();i++){
-            String[] strArray = ((String) jsonArray.get(i)).split(",");
-            Weather weather1 = new Weather();
-            weather1.setTime(strArray[0]);
-            weather1.setDn(strArray[1]);
-            weather1.setDetail(strArray[2]);
-            weather1.setTemperature(strArray[3]);
-            weather1.setWind(strArray[4]);
-            weather1.setWindSize(strArray[5]);
-            weather1.setUnkonow(strArray[6]);
-            weather1.setCity(city);
-            weather1.setCreateTime(new Date());
-            list.add(weather1);
+        for(int i = 0; i < length; i++){
+            //定义URL的规则
+            url = "http://www.weather.com.cn/weather/" + cityList[i] + ".shtml";
+            //通过URL获取HTML内容
+            doc = Jsoup.connect(url).timeout(10000).get();
+            //获取title的值
+            title = doc.getElementsByTag("title").text();
+            city = title.substring(0,2);
+            //获取div的class="c7d"的值
+            element = doc.select("div.c7d").first();
+            //获取第一个<script>标签
+            script = element.select("script").first();
+            //获取<script>中的内容
+            str = script.data().split("=");
+            weather = str[1];
+            jsonObject = JSONObject.fromObject(weather);
+            jsonArray = (JSONArray) jsonObject.get("1d");
+
+            for(int j = 0; j < jsonArray.size();j++){
+                String[] strArray = ((String) jsonArray.get(j)).split(",");
+                Weather weather1 = new Weather();
+                weather1.setTime(strArray[0]);
+                weather1.setDn(strArray[1]);
+                weather1.setDetail(strArray[2]);
+                weather1.setTemperature(strArray[3]);
+                weather1.setWind(strArray[4]);
+                weather1.setWindSize(strArray[5]);
+                weather1.setUnkonow(strArray[6]);
+                weather1.setCity(city);
+                weather1.setCreateTime(new Date());
+                list.add(weather1);
+            }
         }
         return list;
     }

@@ -20,10 +20,9 @@ public class Receiver2 {
 
     private static final Logger logger = LoggerFactory.getLogger(Receiver2.class);
 
-    /*@RabbitListener(queues = "q_topic_messages")
+    @RabbitListener(queues = "q_topic_messages")
     public void process(Message message, Channel channel) throws IOException {
         channel.basicAck(message.getMessageProperties().getDeliveryTag(),true);
-        System.out.println(new String(message.getBody()));
         logger.debug("receive: " + new String(message.getBody()));
-    }*/
+    }
 }
