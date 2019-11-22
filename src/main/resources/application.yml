@@ -34,12 +34,6 @@ spring:
         retry:
           enabled: true #是否支持重试
 
-#mapper4.0 config
-mapper:
-  identity: MYSQL
-  not-empty: false
-  mappers: com.example.springboot.mapperbase.BaseMapper
-
 #阿里短信验证
 accessKeyId:
 accessSecret: 
